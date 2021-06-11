@@ -5,8 +5,8 @@ DATABASE = SqliteDatabase('notmongo.db')
 
 
 class Questions(Model):
-    questionId = IntegerField(primary_key=True)
-    userId = IntegerField(null=True)
+    questionid = IntegerField(null=True)
+    userid = IntegerField(null=True)
     question = TextField(null=True)
     answer = TextField(null=True)
 
@@ -14,9 +14,9 @@ class Questions(Model):
         database = DATABASE
 
     @classmethod
-    def add(cls, userId, question, answer):
+    def add(cls, questionid, userid, question, answer):
         with DATABASE.transaction():
-            cls.create(userId=userId, question=question, answer=answer)
+            cls.create(questionid=questionid, userid=userid, question=question, answer=answer)
 
 
 def initialize():
@@ -29,11 +29,14 @@ def view_all():
     for items in query:
         print(items)
 
+def edit(id):
+    Questions.update(questionid="3", answer=True).where(Questions.id == id).execute()
+
 
 if __name__ == '__main__':
     initialize()
-    userId = 10000
-    questions = [{"Question": "Do you have a car", "Answer": "Yes"}, {"Question": "Are you over 18", "Answer": "Yes"}]
-    for items in questions:
-        Questions.add(userId=userId, question=items["Question"], answer=items["Answer"])
+    # userid = 10000
+    # questions = [{"Id": "01", "Question": "Do you have a car", "Answer": "Yes"}]
+    # for items in questions:
+    #     Questions.add(questionid=items['Id'], userid=userid, question=items["Question"], answer=items["Answer"])
     view_all()
