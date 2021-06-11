@@ -5,7 +5,7 @@ DATABASE = SqliteDatabase('notmongo.db')
 
 
 class Questions(Model):
-    questionid = IntegerField(null=True)
+    questionid = IntegerField(unique=True,null=True)
     userid = IntegerField(null=True)
     question = TextField(null=True)
     answer = TextField(null=True)
