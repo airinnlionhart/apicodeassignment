@@ -3,10 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Import Page for Applicants</title>
+    <style>
+        .container, text-center{
+        margin-top:10%;
+        border-style: solid;
+        background-color:#f5f0e1;
+        color:#ff6e40;
+        padding: 25px;
+        }
+        body{
+        background-color:#1e3d59;
+        color:#ffc13b;
+        }
+        a{
+         margin: 20px;
+        }
+    </style>
 </head>
 <body>
 <h2>Enter Json formatted text for Applicants</h2>
-
+<p>Must be in correct json format with Name and a list of questions with Id and Answer</p>
 <form method="POST">
     <textarea name="applicants" rows="10" cols="100"></textarea><input type="submit">
 </form>
