@@ -8,9 +8,23 @@ class GetApplicants:
         ifTrue = True
         good_applicants = []
         for applicants in file:
-            for question in applicants['Questions']:
-                question_field = models.Questions.get(models.Questions.questionid == question['Id']).answer
+            try:
+                for question in applicants['Questions']:
+                    try:
+                        question_field = models.Questions.get(models.Questions.questionid == question['Id']).answer
+                    except:
+                        print('No Applicants match')
                 if question_field.lower().strip() == question['Answer'].lower().strip():
+                    ifTrue = True
+                else:
+                    ifTrue = False
+            except:
+                for question in applicants['questions']:
+                    try:
+                        question_field = models.Questions.get(models.Questions.questionid == question['id']).answer
+                    except:
+                        print('No Applicants match')
+                if question_field.lower().strip() == question['answer'].lower().strip():
                     ifTrue = True
                 else:
                     ifTrue = False
