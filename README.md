@@ -1,5 +1,5 @@
 # apicodeassignment
-to run the project locally download the project or clone the project and run flask run in the terminal inside the directory apicodeassignment
+to run the project locally download the project or clone the project, activate venv with source /venv/bin/activate. or create your own venv and pip install -r requirements.txt and run flask run in the terminal inside the directory apicodeassignment
 
 The assumption is that the data givens is in the formats below for applicants and questions
 Questions is a list with correct json format [{"Id":id, "Question":"string","Answer":"string"}]
