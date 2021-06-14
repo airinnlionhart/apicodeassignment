@@ -3,7 +3,7 @@ to run the project locally download the project or clone the project, activate v
 
 The assumption is that the data givens is in the formats below for applicants and questions even though it not Json best pratices it was the format that was shown.
 Questions is a list with correct json format [{"Id":"id", "Question":"string","Answer":"string"}]
-Applicants is a list of json data with the format [{"Name":"string", Questions:[{"Id":"id", "Answer":"string"}]
+Applicants is a list of json data with the format [{"Name":"string", "Questions":[{"Id":"id", "Answer":"string"}]
 
 Ways to import data
 import the questions:
