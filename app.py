@@ -4,7 +4,7 @@ import json
 from logic import GetApplicants
 from os import listdir
 from os.path import isfile, join
-from random import randint
+
 
 Debug = True
 
@@ -92,47 +92,6 @@ def applicant_import():
     return render_template('applicantimport.html')
 
 
-@app.route('/file/get_applicants', methods=['GET'])
-def get_apps():
-    """Get applicants from a json file"""
-    if models.Applicants.table_exists():
-        pass
-    else:
-        models.DATABASE.create_tables([models.Applicants], safe=True)
-    if models.AppQuestions.table_exists():
-        pass
-    else:
-        models.DATABASE.create_tables([models.AppQuestions], safe=True)
-    jsonFile = open('applicants.json', )
-    file = json.load(jsonFile)
-    for applicant in file:
-        appid = randint(2000, 100000)
-        try:
-            models.Applicants.add(appid=appid, name=applicant['Name'])
-            for questions in applicant['Questions']:
-                models.AppQuestions.add(appid=appid, questionid=questions['Id'], answer=questions['Answer'])
-                GetApplicants.qualified_applicants(appid)
-
-        except:
-            """For the off chance that random number comes up with the same number"""
-            appid = randint(2000, 100000)
-            try:
-                models.Applicants.add(appid=appid, name=applicant['Name'])
-                for questions in applicant['Questions']:
-                    models.AppQuestions.add(appid=appid, questionid=questions['Id'], answer=questions['answer'])
-                    GetApplicants.qualified_applicants(appid)
-            except:
-                models.Applicants.add(appid=appid, name=applicant['name'])
-                for questions in applicant['questions']:
-                    models.AppQuestions.add(appid=appid, questionid=questions['id'], answer=questions['answer'])
-                    GetApplicants.qualified_applicants(appid)
-
-    qualified_applicants = models.Applicants.select().dicts().where(models.Applicants.qualified == True)
-
-    jsonFile.close()
-    return jsonify(str([items for items in qualified_applicants]))
-
-
 @app.route('/infolder', methods=['GET'])
 def form_file():
     if models.Questions.table_exists():
@@ -151,7 +110,6 @@ def form_file():
         questions_json.append(file)
 
     all_questions = json.dumps(questions_json[0])
-    print(json.loads(all_questions))
     for question in json.loads(all_questions):
         try:
             models.Questions.add(questionid=question['Id'], userid=10000, question=question['Question'],
@@ -171,8 +129,6 @@ def form_file():
 @app.route('/clear')
 def clear():
     models.Questions.delete().where(models.Questions.id > 0).execute()
-    models.AppQuestions.delete().where(models.AppQuestions.id >= 0).execute()
-    models.Applicants.delete().where(models.Applicants.id >= 0).execute()
     return render_template('index.html')
 
 @app.errorhandler(400)

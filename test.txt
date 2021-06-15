@@ -1,4 +1,15 @@
 # add_question route
 # route to call to add questions
 # test way to break this
-# add erroring
+
+should work
+curl -X POST -H "Content-Type: application/json"  -d '[{"Id":1, "Question": "Do you have a car", "Answer": "Yes"}]' http://127.0.0.1:5000/add_question
+200
+
+should work
+curl -X POST -H "Content-Type: application/json"  -d '[{"id":9, "question": "Do you have a car", "answer": "Yes"},
+{"Id":10, "Question": "Do you have a car", "Answer": "Yes"}]' http://127.0.0.1:5000/add_question
+200
+
+should work
+curl -X POST -H "Content-Type: application/json"  -d '[{"id":2, "question": "Do you have a car", "answer": "Yes"}] http://127.0.0.1:5000/add_question

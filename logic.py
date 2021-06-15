@@ -1,4 +1,3 @@
-import json
 import models
 
 
@@ -32,22 +31,3 @@ class GetApplicants:
                 good_applicants.append(applicants)
         return good_applicants
 
-    @staticmethod
-    def qualified_applicants(appid):
-        if models.Applicants.table_exists():
-            pass
-        else:
-            models.DATABASE.create_tables([models.Applicants], safe=True)
-        if models.AppQuestions.table_exists():
-            pass
-        else:
-            models.DATABASE.create_tables([models.AppQuestions], safe=True)
-
-        apps_questions = models.AppQuestions.select().dicts().where(models.AppQuestions.appid == appid)
-        for answers in apps_questions:
-            question_field = models.Questions.get(models.Questions.questionid == answers['questionid']).answer
-            if str(question_field.lower().strip()) != str(answers['answer'].lower().strip()):
-                models.Applicants.update(qualified=False).where(models.Applicants.appid == appid).execute()
-            else:
-                pass
-        return "updated"
