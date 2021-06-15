@@ -15,6 +15,7 @@ class GetApplicants:
                         question_field = models.Questions.get(models.Questions.questionid == question['Id']).answer
                         if question_field.lower().strip() != question['Answer'].lower().strip():
                             good_applicants.remove(applicants)
+                            break
             except:
                 good_applicants.append(applicants)
                 if number_of_questions != len(applicants['questions']):
@@ -24,4 +25,5 @@ class GetApplicants:
                         question_field = models.Questions.get(models.Questions.questionid == question['id']).answer
                         if question_field.lower().strip() != question['answer'].lower().strip():
                             good_applicants.remove(applicants)
+                            break
         return good_applicants
