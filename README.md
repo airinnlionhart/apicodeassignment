@@ -29,6 +29,8 @@ import the questions:
   }
 ]' http://alenharta.pythonanywhere.com/add_question
 
+or from another api: curl <api route> | curl -H "Content-Type: application/json" -d@- http://alenharta.pythonanywhere.com/add_question 
+
 import the applicants
 1.You can go to the url:http://alenharta.pythonanywhere.com/applicant and enter correct json format a list of Applicants that follow this format  [{"Name":"string", Questions:[{"Id":id, "Answer":'string'}]
 
@@ -86,6 +88,8 @@ import the applicants
   }
  ] 
 ' http://alenharta.pythonanywhere.com/get_qualified
+
+or from another api: curl <api route> | curl -H "Content-Type: application/json" -d@- http://alenharta.pythonanywhere.com/get_qualified   
 this will return the Json of qulified applicants who answers match the questions in the database
 
 Routes:
@@ -99,6 +103,5 @@ http://alenharta.pythonanywhere.com/questions will take you to a UI with a textf
 
 http://alenharta.pythonanywhere.com/applicant will take you to a UI with a textform that you can copy paste valid Json and it will return Json data of qualified applicants
 
-
-http://alenharta.pythonanywhere.com/infolder this route will will return qualified applicants in Json if the two folders have any Json files in them. It will take multiple json files (questionfile, and applicantfile)
+http://alenharta.pythonanywhere.com/infolder this route will will return qualified applicants in Json if the two folders have any Json files in them. It will take multiple json files (questionfile, and applicantfile) (If we are going to use this option please send documents to Aaron an hour before)
   
