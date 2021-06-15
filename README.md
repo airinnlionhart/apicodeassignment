@@ -11,7 +11,7 @@ import the questions:
 
 2.Add a correct json format file to  questionfile 
 
-3 curl a post route to http://alenharta.pythonanywhere.com/add_question it would look something like this url -X POST -H "Content-Type: application/json" -d '[
+3 curl a post route to http://alenharta.pythonanywhere.com/add_question it would look something like this curl -X POST -H "Content-Type: application/json" -d '[
   {
     "Id": "1",
     "Question": "Do you have a car",
