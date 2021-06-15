@@ -7,7 +7,6 @@ class GetApplicants:
         number_of_questions = len(models.Questions.select().dicts())
         for applicants in file:
             try:
-                print(len(applicants['Questions']))
                 good_applicants.append(applicants)
                 if number_of_questions != len(applicants['Questions']):
                     good_applicants.remove(applicants)
@@ -17,7 +16,6 @@ class GetApplicants:
                         if question_field.lower().strip() != question['Answer'].lower().strip():
                             good_applicants.remove(applicants)
             except:
-                print(len(applicants['questions']))
                 good_applicants.append(applicants)
                 if number_of_questions != len(applicants['questions']):
                     good_applicants.remove(applicants)
