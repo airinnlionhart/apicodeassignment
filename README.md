@@ -29,7 +29,7 @@ import the questions:
   }
 ]' http://alenharta.pythonanywhere.com/add_question
 
-or from another api: curl <api route> | curl -H "Content-Type: application/json" -d@- http://alenharta.pythonanywhere.com/add_question 
+or from another api: curl "api route" | curl -H "Content-Type: application/json" -d@- http://alenharta.pythonanywhere.com/add_question 
 
 import the applicants
 1.You can go to the url:http://alenharta.pythonanywhere.com/applicant and enter correct json format a list of Applicants that follow this format  [{"Name":"string", Questions:[{"Id":id, "Answer":'string'}]
@@ -89,7 +89,7 @@ import the applicants
  ] 
 ' http://alenharta.pythonanywhere.com/get_qualified
 
-or from another api: curl <api route> | curl -H "Content-Type: application/json" -d@- http://alenharta.pythonanywhere.com/get_qualified   
+or from another api: curl "api route" | curl -H "Content-Type: application/json" -d@- http://alenharta.pythonanywhere.com/get_qualified   
 this will return the Json of qulified applicants who answers match the questions in the database
 
 Routes:
