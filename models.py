@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 from peewee import IntegerField, TextField, Model, SqliteDatabase, BooleanField
 import json
+=======
+from peewee import IntegerField, TextField, Model, SqliteDatabase
+>>>>>>> Dev
 
 DATABASE = SqliteDatabase('notmongo.db')
 
@@ -19,6 +23,7 @@ class Questions(Model):
             cls.create(questionid=questionid, userid=userid, question=question, answer=answer)
 
 
+<<<<<<< HEAD
 class Applicants(Model):
     appid = IntegerField(unique=True, null=True)
     name = TextField(null=True)
@@ -52,16 +57,25 @@ def initialize():
     DATABASE.create_tables([Questions], safe=True)
     DATABASE.create_tables([Applicants], safe=True)
     DATABASE.create_tables([AppQuestions], safe=True)
+=======
+def initialize():
+    DATABASE.connect()
+    DATABASE.create_tables([Questions], safe=True)
+>>>>>>> Dev
 
 
 def view_all():
     query = Questions.select().dicts()
+<<<<<<< HEAD
     query1 = AppQuestions.select().dicts()
     query2 = Applicants.select().dicts()
+=======
+>>>>>>> Dev
 
     for items in query:
         print(items)
 
+<<<<<<< HEAD
     for items in query1:
         print(items)
 
@@ -69,11 +83,16 @@ def view_all():
         print(items)
 
 
+=======
+>>>>>>> Dev
 
 if __name__ == '__main__':
     initialize()
     # Questions.add(questionid=1, userid=1000, question="Do you have a car", answer="yes")
+<<<<<<< HEAD
     # qry = Questions.delete().where(Questions.id > 0).execute()
     # qry = AppQuestions.delete().where(AppQuestions.id >= 0).execute()
     # qry = Applicants.delete().where(Applicants.id >= 0).execute()
+=======
+>>>>>>> Dev
     view_all()
