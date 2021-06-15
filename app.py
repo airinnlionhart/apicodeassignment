@@ -1,18 +1,10 @@
-<<<<<<< HEAD
-from flask import Flask, render_template, request, jsonify
-=======
-from flask import Flask, render_template, request, jsonify, redirect, url_for
->>>>>>> Dev
+from flask import Flask, render_template, request, redirect, url_for
 import models
 import json
 from logic import GetApplicants
 from os import listdir
 from os.path import isfile, join
-<<<<<<< HEAD
-from random import randint
-=======
 
->>>>>>> Dev
 
 Debug = True
 
@@ -42,14 +34,6 @@ def index():
 def add():
     """route to post questions"""
     for items in json.loads(json.dumps(request.get_json())):
-<<<<<<< HEAD
-        questionid = items['Id']
-        question = items['Question']
-        answer = items['Answer']
-        models.Questions.add(questionid=questionid, userid=1000,
-                             question=question,
-                             answer=answer)
-=======
         try:
             questionid = items['Id']
             question = items['Question']
@@ -64,7 +48,6 @@ def add():
             models.Questions.add(questionid=questionid, userid=1000,
                                  question=question,
                                  answer=answer)
->>>>>>> Dev
 
     return "added questions"
 
@@ -85,11 +68,6 @@ def questions_import():
     if request.method == "POST":
         file = request.form['questions']
         for item in json.loads(file):
-<<<<<<< HEAD
-            models.Questions.add(questionid=item['Id'], userid=1000,
-                             question=item['Question'],
-                             answer=item['Answer'])
-=======
             try:
                 models.Questions.add(questionid=item['Id'], userid=1000,
                                      question=item['Question'],
@@ -99,7 +77,6 @@ def questions_import():
                                      question=item['question'],
                                      answer=item['answer'])
         return redirect(url_for('index'))
->>>>>>> Dev
     return render_template('questionimported.html')
 
 
@@ -115,44 +92,6 @@ def applicant_import():
     return render_template('applicantimport.html')
 
 
-<<<<<<< HEAD
-@app.route('/file/get_applicants', methods=['GET'])
-def get_apps():
-    """Get applicants from a json file"""
-    if models.Applicants.table_exists():
-        pass
-    else:
-        models.DATABASE.create_tables([models.Applicants], safe=True)
-    if models.AppQuestions.table_exists():
-        pass
-    else:
-        models.DATABASE.create_tables([models.AppQuestions], safe=True)
-    jsonFile = open('applicants.json', )
-    file = json.load(jsonFile)
-    for applicant in file:
-        appid = randint(2000, 100000)
-        try:
-            models.Applicants.add(appid=appid, name=applicant['Name'])
-            for questions in applicant['Questions']:
-                models.AppQuestions.add(appid=appid, questionid=questions['Id'], answer=questions['Answer'])
-                GetApplicants.qualified_applicants(appid)
-
-        except:
-            """For the off chance that random number comes up with the same number"""
-            appid = randint(2000, 100000)
-            models.Applicants.add(appid=appid, name=applicant['Name'])
-            for questions in applicant['Questions']:
-                models.AppQuestions.add(appid=appid, questionid=questions['Id'], answer=questions['Answer'])
-                GetApplicants.qualified_applicants(appid)
-
-    qualified_applicants = models.Applicants.select().dicts().where(models.Applicants.qualified == True)
-
-    jsonFile.close()
-    return jsonify(str([items for items in qualified_applicants]))
-
-
-=======
->>>>>>> Dev
 @app.route('/infolder', methods=['GET'])
 def form_file():
     if models.Questions.table_exists():
@@ -171,21 +110,13 @@ def form_file():
         questions_json.append(file)
 
     all_questions = json.dumps(questions_json[0])
-<<<<<<< HEAD
-    print(json.loads(all_questions))
-=======
->>>>>>> Dev
     for question in json.loads(all_questions):
         try:
             models.Questions.add(questionid=question['Id'], userid=10000, question=question['Question'],
                                  answer=question['Answer'])
         except:
-<<<<<<< HEAD
-            pass
-=======
             models.Questions.add(questionid=question['id'], userid=10000, question=question['question'],
                                  answer=question['answer'])
->>>>>>> Dev
 
     for files in only_app_files:
         jsonFile = open('applicantfile/' + files, )
@@ -194,8 +125,6 @@ def form_file():
         good_applicant.append(applicants)
 
     return json.dumps(good_applicant)
-<<<<<<< HEAD
-=======
 
 @app.route('/clear')
 def clear():
@@ -220,4 +149,3 @@ def page_not_found(e):
 def page_not_found(e):
     # note that we set the 400 status explicitly
     return "You might have some incorrect values that we don't accept please look over what your sending and try again", 400
->>>>>>> Dev
