@@ -3,7 +3,7 @@ to run the project locally download the project or clone the project, activate v
 
 The assumption is that the data is given in the formats below for applicants and questions even though it not Json best pratices it was the format that was shown.
 Questions is a list with correct json format [{"Id":"id", "Question":"string","Answer":"string"}]
-Applicants is a list of json data with the format [{"Name":"string", "Questions":[{"Id":"id", "Answer":"string"}]
+Applicants is a list of json data with the format [{"Name":"string", "Questions":[{"Id":"id", "Answer":"string"}] (update added version 2 that allows for lowercase Json format)
 
 Ways to import data
 import the questions:
@@ -32,7 +32,7 @@ import the questions:
 import the applicants
 1.You can go to the url:http://alenharta.pythonanywhere.com/applicant and enter correct json format a list of Applicants that follow this format  [{"Name":"string", Questions:[{"Id":id, "Answer":'string'}]
 
-2.Add a correct json format file to applicantfile or update the list in applicants.json
+2.Add a correct json format file to applicantfile 
 
 3.curl a post route to http://alenharta.pythonanywhere.com/get_qualified it would look something liek this curl -X POST -H "Content-Type: application/json" 
     -d '[
@@ -99,7 +99,6 @@ http://alenharta.pythonanywhere.com/questions will take you to a UI with a textf
 
 http://alenharta.pythonanywhere.com/applicant will take you to a UI with a textform that you can copy paste valid Json and it will return Json data of qualified applicants
 
-http://alenharta.pythonanywhere.com/file/get_applicants this route will return qualified applicants in Json if applicants.json file is filled out with correct json
 
 http://alenharta.pythonanywhere.com/infolder this route will will return qualified applicants in Json if the two folders have any Json files in them. It will take multiple json files (questionfile, and applicantfile)
   
