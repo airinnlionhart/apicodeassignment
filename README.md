@@ -24,7 +24,7 @@ import the questions:
   },
   {
     "Id": "3",
-    "Question": "Do you have a car",
+    "Question": "Can you lift 50 pounds",
     "Answer": "True"
   }
 ]' http://alenharta.pythonanywhere.com/add_question
