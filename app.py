@@ -64,7 +64,7 @@ def get_qualified():
 
 @app.route('/questions', methods=('GET', 'POST'))
 def questions_import():
-    """Html import page for import applicants """
+    """Html import page for import questions """
     if request.method == "POST":
         file = request.form['questions']
         for item in json.loads(file):
